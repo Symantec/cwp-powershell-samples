@@ -1,0 +1,2 @@
+subscriptionId=f6dXXXX776-c1d7-4466-956a-fe5XXXXXXX756
+vmNames=RHEL74XXVM001,Win2k12ExtTest
