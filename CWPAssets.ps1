@@ -1,31 +1,48 @@
-#CWP REST API endpoint URL for auth function
-##Forces Tls1.2  -- but not needed for CWP
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+#Get User information from CWPAuth.ini file.  The API Information can be found for your account from the CWP Console under
+#  Setting - API Keys  
+#-------------------------------------------------------------------------------------------------------------
+#Begin Get CWP Authentication Token
+$AuthInfo = get-content 'C:\CWPPowershell\CWPAuth.ini' |ConvertFrom-StringData
 
-#Define API Auth information
-$AuthUrl = 'https://scwp.securitycloud.symantec.com/dcs-service/dcscloud/v1/oauth/tokens'
+    #Enter your customer site infromation below, ensure the information is in quotes.
+    $CustomerID=$AuthInfo.CustomerId
+    $DomainID=$AuthInfo.DomainID
+    $ClientID=$AuthInfo.ClientID
+    $ClientSecret=$AuthInfo.ClientSecret
 
-#Enter your customer site infromation below, ensure the information is in quotes.
-# $CustomerID="xxxxxxxxxxxxxxxxxxxxxx"
-# $DomainID="xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-# $ClientID="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-# $ClientSecret="xxxxxxxxxxxxxxxxxxxxxxxx"
-
-
-$AuthBody = @{
-  'client_id' = $ClientID
-  'client_secret' = $Clientsecret
- } |ConvertTo-Json
-
-$AuthHeaders = @{
-  'content-type'= 'application/json'
-  'x-epmp-customer-id'=$CustomerID
-  'x-epmp-domain-id'=$DomainID}
-
-# Get Token
-$CWPToken = Invoke-RestMethod -Uri $Authurl -Method Post -Headers $Authheaders -Body $Authbody
+    #Function to authenticate and return token from the CWP Server
+function CWPToken ([string]$CustomerID,[string]$DomainID,[string]$ClientID,[string]$ClientSecret)
+    {
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    
+    #Define API Auth information
+    $AuthUrl = 'https://scwp.securitycloud.symantec.com/dcs-service/dcscloud/v1/oauth/tokens'
+    #$CustomerInfo = Get-CustInfo
+    #$customerinfo.$customerid
+    
+    $AuthBody = @{
+      'client_id' = $ClientID
+      'client_secret' = $ClientSecret
+     } |ConvertTo-Json
+    
+    $AuthHeaders = @{
+      'content-type'= 'application/json'
+      'x-epmp-customer-id'=$CustomerID
+      'x-epmp-domain-id'=$DomainID}
+    
+    # Get Token
+    $CWPToken = Invoke-RestMethod -Uri $Authurl -Method Post -Headers $Authheaders -Body $Authbody
+    $CWPAuthToken = $CwpToken.token_type +" " + $CWPToken.access_token
+    return $CWPAuthToken 
+    #End of Authentication and Token creation code
+    
+    }
+   
 #End of Authentication and Token creation code
 #-------------------------------------------------------------------------------------------------------------
+
+#Set output of Function to a variable
+$CWPAuthenticationToken= CWPToken $CustomerID $DomainID $ClientID $ClientSecret
 
 #Get assets
 $AssetURL = 'https://scwp.securitycloud.symantec.com/dcs-service/dcscloud/v1/ui/assets?'
@@ -35,7 +52,7 @@ $AssetURL = $AssetURL +  "where=(cloud_platform in ['AWS'])&include=installed_pr
 
 $AssetHeader = @{
   'content-type' = 'application/json'
-  'Authorization' = $CwpToken.token_type +" " + $CWPToken.access_token
+  'Authorization' =  $CWPAuthenticationToken
   'x-epmp-customer-id' = $CustomerID
   'x-epmp-domain-id' = $DomainID
 } 
@@ -47,10 +64,6 @@ $AssetHeader = @{
 #               }
 
 $CWPAssets = Invoke-RestMethod -Uri $AssetURL -Method GET -Headers $Assetheader #-body $AssetBody 
-#$CWPAssets = $CWPAssets |ConvertTo-Json
-#$CWPAssets
-$results = @()
-
 
 for ($i = 0; $i -lt $cwpassets.results.Count; $i++) 
 {
