@@ -4,7 +4,6 @@
 #Begin Get CWP Authentication Token
 $AuthInfo = get-content 'C:\CWPPowershell\CWPAuth.ini' |ConvertFrom-StringData
 
-    #Enter your customer site infromation below, ensure the information is in quotes.
     $CustomerID=$AuthInfo.CustomerId
     $DomainID=$AuthInfo.DomainID
     $ClientID=$AuthInfo.ClientID
