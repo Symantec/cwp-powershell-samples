@@ -3,8 +3,8 @@
 #Script to get CWP asset agent installation status. CWP REST API keys are passed as commamnd line parameters
 #Refer to CWP REST API at: https://apidocs.symantec.com/home/scwp#_fetch_assets_service
 #Customer has to pass Customer ID, Domain ID, Client ID and Client Secret Key as arguments. The keys are available in CWP portal's Settings->API Key tab
-#Usage: Usage: CWPAssets.ps1 -customerID ?? -DomainID ?? -ClientID ?? -ClientSecret ?? –InstanceID ??
-#E.g:  .\CWPAssets.ps1 -customerID SEJ*CxAg -DomainID Dq*2w -ClientID O2ID.SE*xAg.Dq*B2w.t5*muo -ClientSecret qa*lud8 –InstanceID i-096ff50b85
+#Usage: Usage: cwpasset_agent_status.ps1 -customerID ?? -DomainID ?? -ClientID ?? -ClientSecret ?? –InstanceID ??
+#E.g:  cwpasset_agent_status.ps1 -customerID SEJ*CxAg -DomainID Dq*2w -ClientID O2ID.SE*xAg.Dq*B2w.t5*muo -ClientSecret qa*lud8 –InstanceID i-096ff50b85
 #####################################################################################################
 
 Param (
