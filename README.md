@@ -16,3 +16,5 @@ If Config file option is specified as in above usage, config.tx files should con
 subscriptionId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 vmNames=AppServer, DBServer, WebServer, WindowsSQLIIS
+
+Sample 2 : .\InstallVMExtension.ps1 -customerId xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -domainId xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -secretKey xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -forceReboot yes -vmNameList AppServer, DBServer, WebServer, WindowsSQLIIS -subscriptionId xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -clientId O2ID.xxxxxxxxxxxxxxxxxxx.e3EAztazTs6iWwYEBoZ-NQ.xxxxxxxxxxxxxxxxxxxxxxxxxxxxx -clientSecretKey xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
