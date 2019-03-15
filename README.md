@@ -16,14 +16,3 @@ If Config file option is specified as in above usage, config.tx files should con
 subscriptionId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 vmNames=AppServer, DBServer, WebServer, WindowsSQLIIS
-
-Sample 2 : .\InstallVMExtension.ps1 -customerId xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -domainId xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -secretKey xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -forceReboot yes -vmNameList AppServer, DBServer, WebServer, WindowsSQLIIS -subscriptionId xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -clientId O2ID.xxxxxxxxxxxxxxxxxxx.e3EAztazTs6iWwYEBoZ-NQ.xxxxxxxxxxxxxxxxxxxxxxxxxxxxx -clientSecretKey xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-CWPAssets.ps1
-Script to enumerate all assets
-CWP API Keys are specificed in CWPAuth.ini
-
-cwpasset_agent_status.ps1
-Script to get CWP asset agent installation status. CWP REST API keys are passed as commamnd line parameters
-Usage: CWPAssets.ps1 -customerID ?? -DomainID ?? -ClientID ?? -ClientSecret ?? –InstanceID ??
-E.g:  .\CWPAssets.ps1 -customerID SEJ*CxAg -DomainID Dq*2w -ClientID O2ID.SE*xAg.Dq*B2w.t5*muo -ClientSecret qa*lud8 –InstanceID i-096ff50b85
