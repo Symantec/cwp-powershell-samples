@@ -18,12 +18,21 @@ For More information go to: https://help.symantec.com/cs/SCWP/SCWP/v123139765_v1
 -----------------------------------------------------------------------------------------------------------------------
 
 - [CWP Powershell Samples](#cwp-powershell-samples)
+  - [Docs](#docs)
   - [Setup](#setup)
   - [Install VM Extension](#install-vm-extension)
   - [CWP Assets](#cwp-assets)
   - [CWPAsset Agent Status](#cwpasset-agent-status)
 
 -----------------------------------------------------------------------------------------------------------------------
+
+## Docs
+
+See
+- [CWP Installer Script Help.docx](docs/CWP%20Installer%20Script%20Help.docx) or [CWP Installer Script Help](docs/CWPInstallerScriptHelp.md)
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Setup
 
 Refer to Symantec CWP API documentation at: https://apidocs.symantec.com/home/scwp
