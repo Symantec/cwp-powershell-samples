@@ -22,7 +22,11 @@ For More information go to: https://help.symantec.com/cs/SCWP/SCWP/v123139765_v1
   - [Setup](#setup)
   - [Install VM Extension](#install-vm-extension)
   - [CWP Assets](#cwp-assets)
-  - [CWPAsset Agent Status](#cwpasset-agent-status)
+  - [CWP Asset Agent Status](#cwp-asset-agent-status)
+  - [CWP Agent Version](#cwp-agent-version)
+  - [Helpers](#helpers)
+    - [Token](#token)
+    - [logging](#logging)
 
 -----------------------------------------------------------------------------------------------------------------------
 
@@ -86,7 +90,7 @@ Sample 2 :
 See [README_Assets.md](README_Assets.md) for more info.
 
 -----------------------------------------------------------------------------------------------------------------------
-## CWPAsset Agent Status
+## CWP Asset Agent Status
 [cwpasset_agent_status.ps1](cwpasset_agent_status.ps1)
 
 Script to get CWP asset agent installation status. CWP REST API keys are passed as commamnd line parameters
@@ -103,3 +107,48 @@ E.g:
 
 
 -----------------------------------------------------------------------------------------------------------------------
+## CWP Agent Version
+[cwp_agent_version.ps1](cwp_agent_version.ps1)
+
+Script to get available agent version for all/particular OS on CWP portal under download section
+
+Usage: 
+> `Get-AgentVersion -ServerUrl ?? -Platform ??`
+
+E.g:
+`Get-AgentVersion -ServerUrl "https://scwp.securitycloud.symantec.com" -Platform "all"`
+
+-----------------------------------------------------------------------------------------------------------------------
+
+## Helpers
+
+There are a couple of helper functions you can use in other scripts.
+
+Include them in your other scripts:
+
+```
+. "$PSScriptRoot\cwp_token.ps1"
+. "$PSScriptRoot\logging.ps1"
+```
+
+### Token
+[cwp_token.ps1](cwp_token.ps1)
+
+Get a CWP Auth Token
+
+Usage: 
+> `Get-CWPToken -CustomerId ?? -DomainID ?? -ClientID ?? -ClientSecret ??`
+
+E.g:
+`Get-CWPToken -customerID SEJ*CxAg -DomainID Dq*2w -ClientID O2ID.SE*xAg.Dq*B2w.t5*muo -ClientSecret qa*lud8 –InstanceID i-096ff50b85`
+
+### logging
+[logging.ps1](logging.ps1)
+
+Log a message to a file.
+
+Usage: 
+> `Log-Message -message ?? -authority ??`
+
+E.g:
+`Log-Message -message "Hello" -authority Debug `
